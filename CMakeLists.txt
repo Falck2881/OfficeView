@@ -19,22 +19,30 @@ qt_add_resources(RccStyle "${CMAKE_CURRENT_SOURCE_DIR}/RCC/RccStyle.qrc")
 
 
 set(WIN_SOURCES
-        Windows/WindowLogIn.cpp
-        Windows/WindowLogIn.h
-        Windows/WindowLogIn.ui
+        Windows/WindowID.cpp
+        Windows/WindowID.h
+        Windows/WindowID.ui
 )
 
+set(SOURCES Sources/Input.h Sources/Input.cpp
+            Sources/LinkerInput.h Sources/LinkerInput.cpp
+            Sources/Check.h Sources/Check.cpp
+            Sources/CheckInputSignIn.h Sources/CheckInputSignIn.cpp
+            Sources/CheckInputSignUp.h Sources/CheckInputSignUp.cpp
+            Sources/Command.h)
+
 if(WIN32)
-    add_executable(OfficeView WIN32 ${WIN_SOURCES} ${RccStyle} main.cpp)
+    add_executable(OfficeView WIN32 ${WIN_SOURCES} ${SOURCES} ${RccStyle} main.cpp)
 else()
-    add_executable(OfficeView ${WIN_SOURCES} ${RccStyle} main.cpp)
+    add_executable(OfficeView ${WIN_SOURCES} ${SOURCES} ${RccStyle} main.cpp)
 endif()
 
 target_link_libraries(OfficeView PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
                                          Qt${QT_VERSION_MAJOR}::Core
                                          Qt${QT_VERSION_MAJOR}::Network)
 
-target_include_directories(OfficeView PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/Windows")
+target_include_directories(OfficeView PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/Windows"
+                                              "${CMAKE_CURRENT_SOURCE_DIR}/Sources")
 
 
 include(FetchContent)
@@ -46,13 +54,15 @@ set(AllTestsColorView Tests/test_main.cpp ${WIN_SOURCES})
 
 enable_testing()
 
-add_executable(TestColorView ${AllTestsColorView} ${RccStyle})
+add_executable(TestColorView ${AllTestsColorView} ${SOURCES} ${RccStyle})
 
 target_include_directories(TestColorView PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/Windows"
-                                                 )
+                                                 "${CMAKE_CURRENT_SOURCE_DIR}/Sources")
 
 target_link_libraries(TestColorView PRIVATE GTest::gtest GTest::gtest_main
-                                            Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Core
+                                            Qt${QT_VERSION_MAJOR}::Widgets
+                                            Qt${QT_VERSION_MAJOR}::Core
+                                            Qt${QT_VERSION_MAJOR}::Network
                                             )
 
 # For Windows: Prevent overriding the parent project's compiler/linker settings

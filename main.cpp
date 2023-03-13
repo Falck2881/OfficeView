@@ -1,4 +1,4 @@
-#include "WindowLogIn.h"
+#include "WindowID.h"
 #include <QApplication>
 #include <QFile>
 #include <QDebug>
@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 
     QApplication app(argc, argv);
     app.setStyleSheet(QString(style.readAll()));
-    WindowLogIn w;
+    WindowID w;
     w.show();
     return app.exec();
 }

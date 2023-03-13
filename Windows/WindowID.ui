@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>WindowLogIn</class>
- <widget class="QWidget" name="WindowLogIn">
+ <class>WindowID</class>
+ <widget class="QWidget" name="WindowID">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -60,10 +60,10 @@
     <widget class="QWidget" name="formLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>60</y>
-       <width>511</width>
-       <height>401</height>
+       <x>10</x>
+       <y>40</y>
+       <width>571</width>
+       <height>441</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout">
@@ -76,7 +76,7 @@
       <property name="topMargin">
        <number>50</number>
       </property>
-      <item row="0" column="0">
+      <item row="1" column="0">
        <widget class="QLabel" name="labelUserID">
         <property name="minimumSize">
          <size>
@@ -97,12 +97,12 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
+      <item row="1" column="1">
        <widget class="QLineEdit" name="userIDLine">
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>50</height>
+          <height>40</height>
          </size>
         </property>
         <property name="maximumSize">
@@ -118,7 +118,7 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
+      <item row="3" column="0">
        <widget class="QLabel" name="labelPass">
         <property name="minimumSize">
          <size>
@@ -139,12 +139,12 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
+      <item row="3" column="1">
        <widget class="QLineEdit" name="passwordLine">
         <property name="minimumSize">
          <size>
           <width>200</width>
-          <height>50</height>
+          <height>40</height>
          </size>
         </property>
         <property name="maximumSize">
@@ -160,7 +160,7 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="1">
+      <item row="5" column="1">
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
          <widget class="QPushButton" name="buttonForgetPass">
@@ -200,7 +200,7 @@
         </item>
        </layout>
       </item>
-      <item row="2" column="1">
+      <item row="4" column="1">
        <widget class="QCheckBox" name="checkMe">
         <property name="font">
          <font>
@@ -209,6 +209,30 @@
         </property>
         <property name="text">
          <string>Remember me</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="messUserID">
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="messPass">
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </item>
@@ -245,7 +269,7 @@
        <number>10</number>
       </property>
       <item row="0" column="1">
-       <widget class="QLabel" name="messUserID">
+       <widget class="QLabel" name="messUserID_2">
         <property name="minimumSize">
          <size>
           <width>350</width>
@@ -257,6 +281,11 @@
           <width>16777215</width>
           <height>10</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
         </property>
         <property name="text">
          <string/>
@@ -312,12 +341,17 @@
        </widget>
       </item>
       <item row="4" column="1">
-       <widget class="QLabel" name="messPass">
+       <widget class="QLabel" name="messPass_2">
         <property name="maximumSize">
          <size>
           <width>350</width>
           <height>30</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
         </property>
         <property name="text">
          <string/>
@@ -379,6 +413,11 @@
           <width>350</width>
           <height>30</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
         </property>
         <property name="text">
          <string/>
@@ -461,6 +500,11 @@
           <width>350</width>
           <height>30</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
         </property>
         <property name="text">
          <string/>
