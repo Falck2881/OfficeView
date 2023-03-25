@@ -13,9 +13,9 @@ void Type::Command::Input::saveText(const QString& newText)
     text = newText;
 }
 
-void Type::Command::Input::setCheck(std::shared_ptr<Base::Check> newTypeExp)
+void Type::Command::Input::setRegExp(std::shared_ptr<Base::RegExp> newRegExp)
 {
-    typeExp = std::move(newTypeExp);
+    regExp = std::move(newRegExp);
 }
 
 QString Type::Command::Input::warning() const
@@ -23,37 +23,56 @@ QString Type::Command::Input::warning() const
     return warningMessage;
 }
 
-void Type::Command::Input::updateWarningMessageAboutSignIn(const QString &newMessage)
+QPixmap Type::Command::Input::success() const
 {
-    warningMessage = newMessage;
-    window->updateMessageAboutSignIn(this);
+    QPixmap pixmap(":/IconOK.png");
+    pixmap = pixmap.scaled(32,32,Qt::AspectRatioMode::KeepAspectRatio);
+    return pixmap;
 }
 
-void Type::Command::Input::updateWarningMessageAboutSignUp(const QString &newMessage)
+QPixmap Type::Command::Input::failure() const
 {
-    warningMessage = newMessage;
-    window->updateMessageAboutSignUp(this);
+    QPixmap pixmap(":/IconClose.png");
+    pixmap = pixmap.scaled(32,32,Qt::AspectRatioMode::KeepAspectRatio);
+    return pixmap;
 }
 
-bool Type::Command::Input::execute()
+void Type::Command::Input::updateWarningMessage(const QString &newMessage)
 {
-    bool isExecute = false;
-    if(text != ""){
-        if(typeExp->isMatchRegularExpression(text)){
-            isExecute = true;
-            sendData();
+    setWarnningMessage(newMessage);
+    window->notifyAboutErrorsInput(this);
+}
+
+void Type::Command::Input::execute()
+{
+    if(!regExp->isEmptyString(text)){
+        if(!regExp->isMatchRegularExpression(text)){
+            notifyMediatorAboutSuccessfullyInputting();
         }
-        else
-            isExecute = false;
     }
     else
-        isExecute = false;
+        notifyMediatorAboutTheErrorInput();
 
-
-    return isExecute;
 }
 
-void Type::Command::Input::sendData()
+void Type::Command::Input::setWarnningMessage(const QString &newWarnningMessage)
 {
-    emit data(text);
+    warningMessage = newWarnningMessage;
+}
+
+void Type::Command::Input::notifyMediatorAboutSuccessfullyInputting()
+{
+    setWarnningMessage(" Successfully.");
+    window->notifyAboutSuccessfullyInput(this);
+}
+
+void Type::Command::Input::notifyMediatorAboutTheErrorInput()
+{
+    setWarnningMessage(" Field empty, input a data.");
+    window->notifyAboutErrorsInput(this);
+}
+
+QString Type::Command::Input::data() const
+{
+    return text;
 }

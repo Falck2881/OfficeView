@@ -1,22 +1,24 @@
 #include "LinkerInput.h"
 
-void Linker::Input::append(std::shared_ptr<Type::Command::Input> input)
+Linker::Input::Input(QPushButton* const button):button(button)
 {
-    allDeviceInput.push_back(std::move(input));
+
 }
 
-bool Linker::Input::execute()
+void Linker::Input::append(QLineEdit* const input)
 {
-    bool isExecute = false;
+    allDeviceInput.push_back(input);
+}
+
+void Linker::Input::execute()
+{
     for(auto input: allDeviceInput)
     {
-        if(input->execute())
-            isExecute = true;
-        else{
-            isExecute = false;
+        if(input->text() == ""){
+            button->setEnabled(false);
             break;
         }
+        else
+            button->setEnabled(true);
     }
-
-    return isExecute;
 }
